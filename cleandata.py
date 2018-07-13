@@ -47,6 +47,12 @@ for i,x in enumerate(L):
             for i, p in enumerate(pitch):
                 if float(p[1])<float(lyric[lyric_i][0]):
                     continue
+                if float(p[0])>float(lyric[lyric_i][1]):
+                    if float(p[0])>=end_time[end_i]:
+                        output[-1][4]=1
+                        end_i+=1
+                    lyric_i+=1
+                    first_p=True
                 temp=[]
                 temp.append(float(p[0]))
                 temp.append(float(p[1]))
@@ -56,7 +62,7 @@ for i,x in enumerate(L):
                     first_p=False
                 else:
                     temp.append('-')
-                if float(p[1])==end_time[end_i]:
+                if float(p[1])>=end_time[end_i]:
                     temp.append(1)
                     end_i+=1
                 else:
